@@ -2,9 +2,9 @@ import "./TodoForm.css";
 
 import { useState, useRef, useEffect} from "react";
 
-function TodoForm({onAdd, todos,setTodos}){
+function TodoForm({onAdd, todos, setTodos, newTodos}){
     const [text, setText] = useState("");
- 
+
 
     const ref = useRef(null);
 
@@ -12,14 +12,13 @@ function TodoForm({onAdd, todos,setTodos}){
     let filteredTodos="";
     useEffect(()=>{
     ref.current.addEventListener("keyup", (e)=>{
-        console.log(todos)
-        
+    
     let id = setTimeout(()=>{ 
         // debugger;
         searchText = e.target.value.toLowerCase();//sdjshdjshjdhs
         console.log("searchText",searchText)
         if(!searchText){
-             filteredTodos = todos
+             filteredTodos = todos;
         }else {
             filteredTodos = todos.filter(todo => {
                 return todo.text.toLowerCase().indexOf(searchText) !== -1
@@ -34,12 +33,14 @@ function TodoForm({onAdd, todos,setTodos}){
     },[text]);
 
     return (
+      
         <form onSubmit = {(e) => {
             e.preventDefault();
            if (text !== "") onAdd(text);
            setText("");
+           setTodos(newTodos);
             }} className="todoAppForm">
-
+            <p className="title">ToDo</p>
             <input ref = {ref} type="text" className="todoInput" placeholder="enter text" value={text} onChange={(e)=>{
                 setText(e.target.value);
             }}/>

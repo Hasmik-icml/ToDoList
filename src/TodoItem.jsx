@@ -45,11 +45,11 @@ useEffect(()=>{
 
             <div className="button">
                     <button onClick={()=>{
+                        // debugger;
                         onDelete(todo);
                     }}>x</button>
     
                     <button onClick={()=>{
-                        
                         editTodo(todo.id)
                     }}>Edit</button>
             </div>

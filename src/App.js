@@ -33,9 +33,11 @@ function App() {
 
     <TodoForm 
     todos={todos}
+    newTodos={newTodos}
     setTodos={(filteredTodos)=>{
       console.log("its todos",filteredTodos)
       setNewTodos(filteredTodos)}}
+
     onAdd={text => {
       setTodos([...todos,
       {
@@ -49,21 +51,8 @@ function App() {
     <TodoList
      todos={newTodos ? newTodos : todos}
      setTodos={setTodos}
-    // onEdit=
-    // {
-    //   (editableTodo) =>
-    // {
-    //   //  prompt(editableTodo, editableTodo.text)
-    //   setTodos(todos.map(t=>{
-    //     if (editableTodo.id = t.id){
-    //       return {...t, editable: !t.editable}
-    //     }
-    //   }));
-    // }
-    // }
-
      onChange={(newTodo)=>{
-       setTodos(todos.map(todo=>{
+      setNewTodos([...newTodos].map(todo=>{
          if(todo.id === newTodo.id){
            return newTodo;
          }
@@ -72,10 +61,10 @@ function App() {
      }}
 
      onDelete={(todo)=>{
-       setTodos(todos.filter(t=> todo.id != t.id));
+      setNewTodos([...newTodos].filter(t=> todo.id != t.id));
      }}
      />
-    <TodoFooter todos={todos} onClearCompleted={()=>{
+    <TodoFooter todos={newTodos} onClearCompleted={()=>{
       setTodos(todos.filter(todo => !todo.isCompleted))
     }}/>
     </div>
