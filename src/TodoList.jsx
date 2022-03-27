@@ -3,9 +3,12 @@ import TodoItem from "./TodoItem";
 import "./TodoList.css"
 
 function TodoList({todos, setTodos, onChange, onDelete, onEdit, onAdd}){
+console.log("listi meji todos", todos)
+
     useEffect(()=>{
         console.log("ok")
     }, [todos])
+
     return (
         <div className="todo-row">
            {todos.map((todo)=>{

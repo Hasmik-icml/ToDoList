@@ -1,6 +1,6 @@
 function TodoFooter({todos, onClearCompleted}){
 
-  const completedSize =  todos.filter(todo => {
+  const completedSize =  [...todos].filter(todo => {
         return todo.isCompleted
     }).length
     return (
